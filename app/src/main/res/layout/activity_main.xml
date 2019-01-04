@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btnCutAudio"
+        android:id="@+id/FFmpegAudio"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="音频裁剪" />
+        android:text="FFmpeg_Audio" />
+
+    <Button
+        android:id="@+id/FFmpegVideo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="FFmpeg_Video" />
+
+
+    <Button
+        android:id="@+id/LameAudio"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Lame_Audio" />
+
 
 </LinearLayout>

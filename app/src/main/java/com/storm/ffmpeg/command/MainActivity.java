@@ -1,6 +1,7 @@
 package com.storm.ffmpeg.command;
 
 import android.Manifest;
+import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,9 @@ import android.view.View;
 import com.storm.ffmpeg.command.ffmpeg.AudioCommands;
 import com.storm.ffmpeg.command.ffmpeg.FFmpegCommands;
 import com.storm.ffmpeg.command.ffmpeg.FFmpegRun;
+import com.storm.ffmpeg.command.ui.FFmpegAudioActivity;
+import com.storm.ffmpeg.command.ui.FFmpegVideoActivity;
+import com.storm.ffmpeg.command.ui.LameAudioActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,25 +24,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.MOUNT_FORMAT_FILESYSTEMS}, 100);
-        findViewById(R.id.btnCutAudio).setOnClickListener(this);
+        findViewById(R.id.FFmpegAudio).setOnClickListener(this);
+        findViewById(R.id.FFmpegVideo).setOnClickListener(this);
+        findViewById(R.id.LameAudio).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
-        String src = dir + "bgm.wav";
-        String dest = dir + "bgm_lame_mp3.mp3";
-        String[] commands = AudioCommands.wavToMp3(src,dest);
-        FFmpegRun.execute(commands, new FFmpegRun.FFmpegRunListener() {
-            @Override
-            public void onStart() {
-                Log.i("test", "onStart");
-            }
-
-            @Override
-            public void onEnd(int result) {
-                Log.i("test", "onEnd");
-            }
-        });
+        switch (v.getId()) {
+            case R.id.FFmpegAudio:
+                startActivity(new Intent(this, FFmpegAudioActivity.class));
+                break;
+            case R.id.FFmpegVideo:
+                startActivity(new Intent(this, FFmpegVideoActivity.class));
+                break;
+            case R.id.LameAudio:
+                startActivity(new Intent(this, LameAudioActivity.class));
+                break;
+        }
     }
 }
